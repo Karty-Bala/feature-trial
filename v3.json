@@ -1,0 +1,24 @@
+{
+    "as": {
+        "asn": 32934,
+        "domain": "https://www.meta.com/",
+        "name": "FACEBOOK",
+        "route": "31.13.65.0/24",
+        "type": "Content"
+    },
+    "domainName": "www.instagram.com",
+    "categories": [
+        {
+            "confidence": 0.7,
+            "id": 14,
+            "name": "Social Networking"
+        },
+        {
+            "confidence": 0.7,
+            "id": 78,
+            "name": "Image and Video Search"
+        }
+    ],
+    "createdDate": "2004-06-04T13:37:18+00:00",
+    "websiteResponded": true
+}
