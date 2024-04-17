@@ -165,15 +165,12 @@ body {
   width: 50%;
 }
 .bigger-list li{
-font-size: 1.2em;
+font-size: 1.5em;
 }
 #geoloc{
 padding-left:50px;
 }
 #reputation{
-padding-left:70px;
 }
 #warnings-list{
-padding:80px;
-top-right:70px;
 }

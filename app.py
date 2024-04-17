@@ -25,7 +25,7 @@ def get_domain_name(url):
 def index():
     ApiKey = "at_QLI83U4Lnkv28Ch8UXL2Zzoyj8hlX"
     webCatURL = ("https://website-categorization.whoisxmlapi.com/api/v3?apiKey=" + ApiKey + "&domainName=")
-    geoLocURL = "https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=" + ApiKey +"domain="
+    geoLocURL = "https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=" + ApiKey + "&domain="
     domRepURL = "https://domain-reputation.whoisxmlapi.com/api/v2?apiKey=" + ApiKey + "&domainName="
 
     if request.method == "POST":
@@ -48,28 +48,39 @@ def index():
         domRep_data = json.loads(domRepResult.content.decode('ascii'))
 
         # webCat INFO
-        categories = webCat_data.get('categories', [])
-        if 'code:422' in webCat_data:
-            listCategories = [{"name": "", "confidence": "Not Enough Content"}]
-        else:
-            listCategories = []
-            for category in categories:
-                name = category.get('name', '')
-                confidence = category.get('confidence', 0)
-                listCategories.append({"name": name, "confidence": int(confidence * 100)})
+        try:
+            categories = webCat_data.get('categories', [])
+            if 'code:422' in webCat_data:
+                listCategories = [{"name": "", "confidence": "Not Enough Content"}]
+            else:
+                listCategories = []
+                for category in categories:
+                    name = category.get('name', '')
+                    confidence = category.get('confidence', 0)
+                    listCategories.append({"name": name, "confidence": int(confidence * 100)})
+        except:
+            listCategories = ["No categories "]
 
         #geoloc INFO
-        country = geoLoc_data["location"]["country"]
-        region = geoLoc_data["location"]["region"]
+        try:
+            country = geoLoc_data["location"]["country"]
+            region = geoLoc_data["location"]["region"]
+        except:
+            country = "Not Specified"
+            region = "Not Specified"
+
 
         #domRep INFO
-        warning_descriptions = []
-        domRepScore = domRep_data["reputationScore"]
-        for index, result in enumerate(domRep_data["testResults"]):
-            if result["test"] == "SSL vulnerabilities":
-                for warning in result["warnings"]:
-                    warning_descriptions.append(warning["warningDescription"])
-                break
+        try:
+            warning_descriptions = []
+            domRepScore = domRep_data["reputationScore"]
+            for index, result in enumerate(domRep_data["testResults"]):
+                if result["test"] == "SSL vulnerabilities":
+                    for warning in result["warnings"]:
+                        warning_descriptions.append(warning["warningDescription"])
+                    break
+        except:
+            warning_descriptions = ["No warnings found."]
         print(listCategories)
         print("Country:", country)
         print("Region:", region)

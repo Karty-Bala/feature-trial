@@ -27,16 +27,15 @@
             <h6 class="right"><a href="{{ url }}" target="_blank">{{ url }}</a></h6>
             <br>
             <h3 id="prediction"></h3>
-
             <button class="button2" id="button2" role="button" onclick="window.open('{{ url }}')" target="_blank">Still want to Continue</button>
             <button class="button1" id="button1" role="button" onclick="window.open('{{ url }}')" target="_blank">Continue</button>
         </div>
-
     </div>
     <br>
     <br>
     <div class="row" id="form3">
         <div class="col-md" id="webcat" >
+            <h3>Website Categorization</h3>
             <ul class="bigger-list" id="categories-list">
                 {% for category in listCategories %}
                     <li>Name: {{ category.name }}, Confidence: {{ category.confidence }}%</li>
@@ -51,17 +50,19 @@
         </div>
     </div>
     <div class="row" id="SSL-warning">
-        <h2>Domain Reputation Score Test Results</h2>
+        <div class="col-md" id="domrep" >
+            <h3>SSL Certification Test Warnings</h3><br>
+            <ul class="bigger-list" id="warnings-list">
+                {% for warning in warning_descriptions %}
+                    <li>Warnings: {{ warning }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md" id="repScore" >
+            <h3>Domain Reputation Score Test Results</h3>
+        <h2 id="reputation">Reputation Score: {{domRepScore}}</h2><br>
         <br>
-        <h3 id="reputation">Reputation Score: {{domRepScore}}</h3><br>
-        <br>
-        <h2>SSL Certification Test Warnings</h2><br>
-
-<!--            <ul class="bigger-list" id="warnings-list">-->
-<!--            {% for warning in warning_descriptions %}-->
-<!--                <li>Warnings: {{ warning }}%</li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
+        </div>
 
 
     </div>
