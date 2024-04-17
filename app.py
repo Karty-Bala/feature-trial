@@ -23,11 +23,10 @@ def get_domain_name(url):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-
-    webCatURL = ("https://website-categorization.whoisxmlapi.com/api/v3?apiKey=at_Xvchfwv7SVhPs9JPN0he6PVzzZPge"
-                 "&domainName=")
-    geoLocURL = "https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=at_Xvchfwv7SVhPs9JPN0he6PVzzZPge&domain="
-    domRepURL = "https://domain-reputation.whoisxmlapi.com/api/v2?apiKey=at_Xvchfwv7SVhPs9JPN0he6PVzzZPge&domainName="
+    ApiKey = "at_QLI83U4Lnkv28Ch8UXL2Zzoyj8hlX"
+    webCatURL = ("https://website-categorization.whoisxmlapi.com/api/v3?apiKey=" + ApiKey + "&domainName=")
+    geoLocURL = "https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=" + ApiKey +"domain="
+    domRepURL = "https://domain-reputation.whoisxmlapi.com/api/v2?apiKey=" + ApiKey + "&domainName="
 
     if request.method == "POST":
         url = request.form["url"]
