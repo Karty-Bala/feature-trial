@@ -27,16 +27,44 @@
             <h6 class="right"><a href="{{ url }}" target="_blank">{{ url }}</a></h6>
             <br>
             <h3 id="prediction"></h3>
-            <ul id="categories-list">
+
+            <button class="button2" id="button2" role="button" onclick="window.open('{{ url }}')" target="_blank">Still want to Continue</button>
+            <button class="button1" id="button1" role="button" onclick="window.open('{{ url }}')" target="_blank">Continue</button>
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="row" id="form3">
+        <div class="col-md" id="webcat" >
+            <ul class="bigger-list" id="categories-list">
                 {% for category in listCategories %}
                     <li>Name: {{ category.name }}, Confidence: {{ category.confidence }}%</li>
                 {% endfor %}
             </ul>
-            <button class="button2" id="button2" role="button" onclick="window.open('{{ url }}')" target="_blank">Still want to Continue</button>
-            <button class="button1" id="button1" role="button" onclick="window.open('{{ url }}')" target="_blank">Continue</button>
+        </div>
+        <br>
+        <div class="col-md" id="geoloc" >
+            <h3>Geolocation Information:</h3>
+            <h4>Country: {{country}}</h4>
+            <h4>Region: {{region}}</h4>
         </div>
     </div>
-    <br>
+    <div class="row" id="SSL-warning">
+        <h2>Domain Reputation Score Test Results</h2>
+        <br>
+        <h3 id="reputation">Reputation Score: {{domRepScore}}</h3><br>
+        <br>
+        <h2>SSL Certification Test Warnings</h2><br>
+
+<!--            <ul class="bigger-list" id="warnings-list">-->
+<!--            {% for warning in warning_descriptions %}-->
+<!--                <li>Warnings: {{ warning }}%</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+
+
+    </div>
 </div>
 <script>
     let x = '{{xx}}';
